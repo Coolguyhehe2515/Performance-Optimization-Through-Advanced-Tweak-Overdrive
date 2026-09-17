@@ -1,0 +1,38 @@
+name: Build P.O.T.A.T.O
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Java 8
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
+
+      - name: Download Forge MDK
+        run: |
+          wget -q https://maven.minecraftforge.net/net/minecraftforge/forge/1.12.2-14.23.5.2860/forge-1.12.2-14.23.5.2860-mdk.zip
+          unzip -q forge-1.12.2-14.23.5.2860-mdk.zip -d forge-mdk
+          cp forge-mdk/build.gradle .
+          cp forge-mdk/gradlew .
+          cp -r forge-mdk/gradle .
+
+      - name: Build
+        run: |
+          chmod +x gradlew
+          ./gradlew setupDecompWorkspace
+          ./gradlew build
+
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: P.O.T.A.T.O
+          path: build/libs/*.jar
