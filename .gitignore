@@ -1,0 +1,9 @@
+.gradle/
+build/
+run/
+out/
+logs/
+.idea/
+*.class
+*.jar
+*.zip

@@ -1,0 +1,11 @@
+[
+  {
+    "modid": "potato",
+    "name": "P.O.T.A.T.O",
+    "description": "Performance Optimization Through Advanced Tweak Overdrive",
+    "version": "${version}",
+    "mcversion": "1.12.2",
+    "authorList": ["KrispyBRN"],
+    "dependencies": []
+  }
+]
