@@ -17,18 +17,17 @@ jobs:
           distribution: temurin
           java-version: '8'
 
-      - name: Download Forge MDK
+      - name: Forge MDK
         run: |
           wget -q https://maven.minecraftforge.net/net/minecraftforge/forge/1.12.2-14.23.5.2860/forge-1.12.2-14.23.5.2860-mdk.zip
-          unzip -q forge-1.12.2-14.23.5.2860-mdk.zip -d forge-mdk
-          cp forge-mdk/build.gradle .
-          cp forge-mdk/gradlew .
-          cp -r forge-mdk/gradle .
+          unzip -q forge-1.12.2-14.23.5.2860-mdk.zip -d mdk
+          cp mdk/build.gradle .
+          cp mdk/gradlew .
+          cp -r mdk/gradle .
 
       - name: Build
         run: |
           chmod +x gradlew
-          ./gradlew setupDecompWorkspace
           ./gradlew build
 
       - name: Upload JAR
